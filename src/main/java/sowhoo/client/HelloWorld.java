@@ -1,4 +1,4 @@
-package com.yusufaytas.sowhoo;
+package sowhoo.client;
 
 import org.springframework.stereotype.Service;
 

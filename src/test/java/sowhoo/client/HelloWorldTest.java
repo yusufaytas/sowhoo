@@ -1,4 +1,4 @@
-package com.yusufaytas.sowhoo;
+package sowhoo.client;
 
 public class HelloWorldTest {
 
