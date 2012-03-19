@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	
+	<!-- 
+	This is used to get load and resolve the properties files that reside in the classpath
+	It doesn't support multiple locations listed individually but you can use the * wilcard to
+	load multiple files. 	
+	 -->
+	<context:property-placeholder location="classpath:database.properties"/>
+	
+	<!-- 
+	component-scan is used to scan a package and its subpackages recursively for annotated classes with
+	@Component, @Service, @Repository, @Aspect and such. When such classes found, they'll be registered
+	as a bean in the application context.
+	-->
+	<context:component-scan base-package="sowhoo.server" />
+	
+	<!-- 
+	This is for configuring the transactional behavior based on annotations. By default the txManager wired,
+	should have the bean name "transactionManager" but you can also specify custom a bean name with the 
+	transaction-manager parameter. 
+	 -->
+	<tx:annotation-driven />
+	
+	<!--
+	This is the convenient way to set up an EntityManagerFactory and inject it into the DAO's afterwards.
+	JNDI Lookup can also be used here. By default configuration file in META-INF/persistence.xml is used.
+	Parameters are located in application.properties file.
+	 -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="sowhooPU" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!--
+	This class is a plain old JDBC Driver configuration and it's not an actual connection pool. 
+	Parameters are located in application.properties file.
+	 -->	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" destroy-method="close">
+        <property name="driverClassName" value="${database.driver}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+    </bean>
+
+</beans>
