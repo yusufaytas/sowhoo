@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>sowhoo.client</groupId>
+	<artifactId>sowhoo-client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<spring.version>3.1.0.RELEASE</spring.version>
+	</properties>
+	<developers>
+		<developer>
+			<name>Yusuf Aytas</name>
+			<organization>Bilkent University</organization>
+			<email>yusuf.aytas@bilkent.edu.tr</email>
+			<organizationUrl>http://www.bilkent.edu.tr</organizationUrl>
+			<url>http://www.yusufaytas.com</url>
+			<roles>
+				<role>Software Engineer</role>
+				<role>Computer Scientist</role>
+			</roles>
+		</developer>
+	</developers>
+	<build>
+
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	</dependencies>
+</project>
