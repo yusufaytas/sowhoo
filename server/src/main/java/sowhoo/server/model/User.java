@@ -18,9 +18,6 @@ public class User {
 	@Column(name = "uemail")
 	private String email;
 	
-	@Column(name = "ukey")
-	private String key;
-	
 	@Column(name = "uip")
 	private String ip;
 	
@@ -32,12 +29,6 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getKey() {
-		return key;
-	}
-	public void setKey(String key) {
-		this.key = key;
 	}
 	public String getIp() {
 		return ip;

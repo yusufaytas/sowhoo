@@ -21,9 +21,10 @@ public class UserDAOImpl implements UserDAO{
 		sessionFactory.getCurrentSession().delete(user);
 	}
 
-	public User find(String email) {
+	public String find(String email) {
 		String query = "SELECT * FROM User WHERE email ='"+email+"'";
-		return (User)sessionFactory.getCurrentSession().createSQLQuery(query).list().get(0);
+		User user = (User)sessionFactory.getCurrentSession().createSQLQuery(query).list().get(0);
+		return user.getIp();
 	}
 
 }
