@@ -1,28 +1,29 @@
 package sowhoo.server.dao.impl;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import sowhoo.server.dao.UserDAO;
 import sowhoo.server.model.User;
 
+@Repository
 public class UserDAOImpl implements UserDAO{
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	public void save(User user) {
-		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
-
-	public void update(User user) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	public void delete(User user) {
-		// TODO Auto-generated method stub
-		
+		sessionFactory.getCurrentSession().delete(user);
 	}
 
 	public User find(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT * FROM User WHERE email ='"+email+"'";
+		return (User)sessionFactory.getCurrentSession().createSQLQuery(query).list().get(0);
 	}
 
 }
