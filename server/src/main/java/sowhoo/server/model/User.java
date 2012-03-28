@@ -24,6 +24,15 @@ public class User {
 	@Column(name = "upassword")
 	private String password;
 	
+	@Column(name = "uport")
+	private String port;
+	
+	public String getPort() {
+		return port;
+	}
+	public void setPort(String port) {
+		this.port = port;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -42,5 +51,9 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public boolean equals(User user){
+		return (this.email.equals(user.getEmail())&&this.password.equals(user.getPassword()));
 	}
 }
