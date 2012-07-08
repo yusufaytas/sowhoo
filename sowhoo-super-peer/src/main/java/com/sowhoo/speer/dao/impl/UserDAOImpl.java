@@ -1,11 +1,12 @@
-package sowhoo.server.dao.impl;
+package com.sowhoo.speer.dao.impl;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import sowhoo.server.dao.UserDAO;
-import sowhoo.server.model.User;
+import com.sowhoo.speer.dao.UserDAO;
+import com.sowhoo.speer.model.User;
+
 
 @Repository
 public class UserDAOImpl implements UserDAO{

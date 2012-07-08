@@ -1,16 +1,17 @@
-package sowhoo.server.service.impl;
+package com.sowhoo.speer.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import sowhoo.server.dao.UserDAO;
-import sowhoo.server.exception.NoSuchUserException;
-import sowhoo.server.exception.UnAuthorizedUserException;
-import sowhoo.server.exception.UserAlreadyExistException;
-import sowhoo.server.model.User;
-import sowhoo.server.service.UserService;
+import com.sowhoo.speer.dao.UserDAO;
+import com.sowhoo.speer.exception.NoSuchUserException;
+import com.sowhoo.speer.exception.UnAuthorizedUserException;
+import com.sowhoo.speer.exception.UserAlreadyExistException;
+import com.sowhoo.speer.model.User;
+import com.sowhoo.speer.service.UserService;
+
 
 @Service
 @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)

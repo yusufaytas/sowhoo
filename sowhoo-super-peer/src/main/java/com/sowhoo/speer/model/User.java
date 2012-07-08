@@ -1,4 +1,4 @@
-package sowhoo.server.model;
+package com.sowhoo.speer.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

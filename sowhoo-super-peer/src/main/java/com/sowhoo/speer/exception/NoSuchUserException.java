@@ -1,4 +1,4 @@
-package sowhoo.server.exception;
+package com.sowhoo.speer.exception;
 
 public class NoSuchUserException extends Exception{
 

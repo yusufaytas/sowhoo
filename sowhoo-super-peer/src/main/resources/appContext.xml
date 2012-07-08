@@ -13,7 +13,7 @@
 
 	<context:property-placeholder location="classpath:database.properties"/>
 	
-	<context:component-scan base-package="sowhoo.server" />
+	<context:component-scan base-package="com.sowhoo.speer" />
 
 	<tx:annotation-driven />
 
@@ -29,7 +29,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>sowhoo.server.model.User</value>
+                <value>com.sowhoo.speer.model.User</value>
             </list>
         </property>
         <property name="hibernateProperties">
