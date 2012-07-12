@@ -29,7 +29,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>com.sowhoo.speer.model.User</value>
+                <value>com.sowhoo.speer.model.Peer</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -45,5 +45,4 @@
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-    
 </beans>

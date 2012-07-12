@@ -10,21 +10,21 @@ import org.hibernate.search.annotations.Indexed;
 
 @Indexed
 @Entity
-@Table(name = "sowhoouser")
-public class User {
+@Table(name = "sowhoopeer")
+public class Peer {
 	
 	@Id
 	@DocumentId
-	@Column(name = "uemail")
+	@Column(name = "pemail")
 	private String email;
 	
-	@Column(name = "uip")
+	@Column(name = "pip")
 	private String ip;
 	
-	@Column(name = "upassword")
+	@Column(name = "ppassword")
 	private String password;
 	
-	@Column(name = "uport")
+	@Column(name = "pport")
 	private String port;
 	
 	public String getPort() {
@@ -53,7 +53,7 @@ public class User {
 		this.password = password;
 	}
 	
-	public boolean equals(User user){
-		return (this.email.equals(user.getEmail())&&this.password.equals(user.getPassword()));
+	public boolean equals(Peer peer){
+		return (this.email.equals(peer.getEmail())&&this.password.equals(peer.getPassword()));
 	}
 }

@@ -1,14 +1,14 @@
 package com.sowhoo.speer.exception;
 
-public class NoSuchUserException extends Exception{
+public class NoPeerException extends Exception{
 
 	private static final long serialVersionUID = 7240520441932461948L;
 
-	public NoSuchUserException(){
+	public NoPeerException(){
 		super();
 	}
 	
-	public NoSuchUserException(String message){
+	public NoPeerException(String message){
 		super(message);
 	}
 }

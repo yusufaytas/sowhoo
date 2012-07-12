@@ -1,14 +1,14 @@
 package com.sowhoo.speer.exception;
 
-public class UnAuthorizedUserException extends Exception{
+public class UnAuthorizedPeerException extends Exception{
 
 	private static final long serialVersionUID = -825854619329673697L;
 
-	public UnAuthorizedUserException(){
+	public UnAuthorizedPeerException(){
 		super();
 	}
 	
-	public UnAuthorizedUserException(String message){
+	public UnAuthorizedPeerException(String message){
 		super(message);
 	}
 }

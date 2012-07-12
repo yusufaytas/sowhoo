@@ -1,14 +1,14 @@
 package com.sowhoo.speer.exception;
 
-public class UserAlreadyExistException extends Exception{
+public class PeerAlreadyExistException extends Exception{
 
 	private static final long serialVersionUID = 3198784535050328757L;
 
-	public UserAlreadyExistException(){
+	public PeerAlreadyExistException(){
 		super();
 	}
 	
-	public UserAlreadyExistException(String message){
+	public PeerAlreadyExistException(String message){
 		super(message);
 	}
 }
