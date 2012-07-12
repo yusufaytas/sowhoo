@@ -8,4 +8,5 @@ import com.sowhoo.speer.model.Peer;
 public interface PeerService {
 	public void update(Peer peer) throws UnAuthorizedPeerException,NoPeerException;
 	public void save(Peer peer) throws PeerAlreadyExistException;
+	public String find(String email) throws NoPeerException;
 }

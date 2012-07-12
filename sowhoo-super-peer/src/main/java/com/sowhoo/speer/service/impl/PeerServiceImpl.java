@@ -40,7 +40,7 @@ public class PeerServiceImpl implements PeerService {
 	}
 	
 	@Transactional
-	public String discover(String email){
+	public String find(String email){
 		return peerDAO.find(email).getIp();
 	}
 
