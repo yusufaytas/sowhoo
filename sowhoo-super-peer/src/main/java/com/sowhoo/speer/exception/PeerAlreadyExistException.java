@@ -11,19 +11,19 @@
  * from Yusuf Aytas.
  * Author : Yusuf Aytas
  * Date : Jul 13, 2012
- * File : UnAuthorizedRegisteredPeerException.java
+ * File : PeerAlreadyExistException.java
  */
 package com.sowhoo.speer.exception;
 
-public class UnAuthorizedRegisteredPeerException extends Exception{
+public class PeerAlreadyExistException extends Exception{
 
-	private static final long serialVersionUID = -825854619329673697L;
+	private static final long serialVersionUID = 3198784535050328757L;
 
-	public UnAuthorizedRegisteredPeerException(){
+	public PeerAlreadyExistException(){
 		super();
 	}
 	
-	public UnAuthorizedRegisteredPeerException(String message){
+	public PeerAlreadyExistException(String message){
 		super(message);
 	}
 }

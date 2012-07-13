@@ -16,12 +16,12 @@
 package com.sowhoo.speer.service;
 
 import com.sowhoo.speer.exception.NoRegisteredPeerException;
-import com.sowhoo.speer.exception.UnAuthorizedRegisteredPeerException;
-import com.sowhoo.speer.exception.RegisteredPeerAlreadyExistException;
+import com.sowhoo.speer.exception.UnAuthorizedPeerException;
+import com.sowhoo.speer.exception.PeerAlreadyExistException;
 import com.sowhoo.speer.model.RegisteredPeer;
 
 public interface RegisteredPeerService {
-	public void update(RegisteredPeer peer) throws UnAuthorizedRegisteredPeerException,NoRegisteredPeerException;
-	public void save(RegisteredPeer peer) throws RegisteredPeerAlreadyExistException;
+	public void update(RegisteredPeer peer) throws UnAuthorizedPeerException,NoRegisteredPeerException;
+	public void save(RegisteredPeer peer) throws PeerAlreadyExistException;
 	public String find(String email) throws NoRegisteredPeerException;
 }
