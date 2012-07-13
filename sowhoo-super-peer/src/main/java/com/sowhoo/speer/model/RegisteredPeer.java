@@ -1,3 +1,18 @@
+/*************************************************************************
+ * Yusuf Aytas  © All Rights Reserved.
+ * 
+ * NOTICE:  All information contained herein is, and remains the property 
+ * of Yusuf Aytas and its suppliers,if any.  The intellectual and 
+ * technical concepts contained herein are proprietary to Yusuf Aytas
+ * and its suppliers and may be covered by U.S. and Foreign Patents,patents
+ * in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material is 
+ * strictly forbidden unless prior written permission is obtained
+ * from Yusuf Aytas.
+ * Author : Yusuf Aytas
+ * Date : Jul 13, 2012
+ * File : RegisteredPeer.java
+ */
 package com.sowhoo.speer.model;
 
 import javax.persistence.Column;
@@ -10,21 +25,21 @@ import org.hibernate.search.annotations.Indexed;
 
 @Indexed
 @Entity
-@Table(name = "sowhoopeer")
-public class Peer {
+@Table(name = "RegisteredPeer")
+public class RegisteredPeer {
 	
 	@Id
 	@DocumentId
-	@Column(name = "pemail")
+	@Column(name = "rpEmail")
 	private String email;
 	
-	@Column(name = "pip")
+	@Column(name = "rpIp")
 	private String ip;
 	
-	@Column(name = "ppassword")
+	@Column(name = "rpPassword")
 	private String password;
 	
-	@Column(name = "pport")
+	@Column(name = "rpPort")
 	private String port;
 	
 	public String getPort() {
@@ -53,7 +68,7 @@ public class Peer {
 		this.password = password;
 	}
 	
-	public boolean equals(Peer peer){
+	public boolean equals(RegisteredPeer peer){
 		return (this.email.equals(peer.getEmail())&&this.password.equals(peer.getPassword()));
 	}
 }

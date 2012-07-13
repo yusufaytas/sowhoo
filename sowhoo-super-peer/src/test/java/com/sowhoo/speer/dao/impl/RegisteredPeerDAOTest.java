@@ -1,3 +1,18 @@
+/*************************************************************************
+ * Yusuf Aytas  © All Rights Reserved.
+ * 
+ * NOTICE:  All information contained herein is, and remains the property 
+ * of Yusuf Aytas and its suppliers,if any.  The intellectual and 
+ * technical concepts contained herein are proprietary to Yusuf Aytas
+ * and its suppliers and may be covered by U.S. and Foreign Patents,patents
+ * in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material is 
+ * strictly forbidden unless prior written permission is obtained
+ * from Yusuf Aytas.
+ * Author : Yusuf Aytas
+ * Date : Jul 13, 2012
+ * File : RegisteredPeerDAOTest.java
+ */
 package com.sowhoo.speer.dao.impl;
 
 import static org.junit.Assert.*;
@@ -17,15 +32,15 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.sowhoo.speer.builder.PeerBuilder;
-import com.sowhoo.speer.dao.impl.PeerDAOImpl;
-import com.sowhoo.speer.model.Peer;
+import com.sowhoo.speer.builder.RegisteredPeerBuilder;
+import com.sowhoo.speer.dao.impl.RegisteredPeerDAOImpl;
+import com.sowhoo.speer.model.RegisteredPeer;
 
 @RunWith( MockitoJUnitRunner.class ) 
-public class PeerDAOTest {
+public class RegisteredPeerDAOTest {
 
 	@Spy
-	PeerDAOImpl peerDAO = new PeerDAOImpl();
+	RegisteredPeerDAOImpl registeredPeerDAO = new RegisteredPeerDAOImpl();
 	
 	@Mock
 	SessionFactory sessionFactory;
@@ -37,22 +52,22 @@ public class PeerDAOTest {
 	SQLQuery sqlQuery;
 	
 	@Spy
-	List<Peer> list = new ArrayList<Peer>();
+	List<RegisteredPeer> list = new ArrayList<RegisteredPeer>();
 	
-	private Peer peer;
+	private RegisteredPeer peer;
 	
 	@Before
 	public void setup(){
 		MockitoAnnotations.initMocks(this);
-		peer = new PeerBuilder().email("email").build();
-		peerDAO.setSessionFactory(sessionFactory);
+		peer = new RegisteredPeerBuilder().email("email").build();
+		registeredPeerDAO.setSessionFactory(sessionFactory);
 	}
 	
 	@Test
 	public void saveTest(){
 		when(sessionFactory.getCurrentSession()).thenReturn(session);
 		doNothing().when(session).saveOrUpdate(peer);
-		peerDAO.save(peer);
+		registeredPeerDAO.save(peer);
 		verify(sessionFactory).getCurrentSession();
 		verify(session).saveOrUpdate(peer);
 	}
@@ -61,7 +76,7 @@ public class PeerDAOTest {
 	public void deleteTest(){
 		when(sessionFactory.getCurrentSession()).thenReturn(session);
 		doNothing().when(session).delete(peer);
-		peerDAO.delete(peer);
+		registeredPeerDAO.delete(peer);
 		verify(sessionFactory).getCurrentSession();
 		verify(session).delete(peer);
 	}
@@ -70,10 +85,10 @@ public class PeerDAOTest {
 	public void findTest(){
 		String email = "email";
 		String query = "SELECT * FROM sowhoopeer WHERE pemail ='"+email+"'";
-		doReturn(sqlQuery).when(peerDAO).createQuery(query, Peer.class);
+		doReturn(sqlQuery).when(registeredPeerDAO).createQuery(query, RegisteredPeer.class);
 		when(sqlQuery.list()).thenReturn(list);
 		doReturn(peer).when(list).get(0);
-		Peer actualPeer = peerDAO.find(email);
+		RegisteredPeer actualPeer = registeredPeerDAO.find(email);
 		assertEquals(peer, actualPeer);
 	}
 	
@@ -81,10 +96,10 @@ public class PeerDAOTest {
 	public void findThrowsExceptionTest(){
 		String email = "email";
 		String query = "SELECT * FROM sowhoopeer WHERE pemail ='"+email+"'";
-		doReturn(sqlQuery).when(peerDAO).createQuery(query, Peer.class);
+		doReturn(sqlQuery).when(registeredPeerDAO).createQuery(query, RegisteredPeer.class);
 		when(sqlQuery.list()).thenReturn(list);
 		doThrow(new IndexOutOfBoundsException()).when(list).get(0);
-		Peer actualPeer = peerDAO.find(email);
+		RegisteredPeer actualPeer = registeredPeerDAO.find(email);
 		assertEquals(null, actualPeer);
 	}
 }
