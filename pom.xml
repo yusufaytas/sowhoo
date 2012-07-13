@@ -123,5 +123,6 @@
 	<modules>
 		<module>sowhoo-peer</module>
 		<module>sowhoo-super-peer</module>
+		<module>sowhoo-common</module>
 	</modules>
 </project>
