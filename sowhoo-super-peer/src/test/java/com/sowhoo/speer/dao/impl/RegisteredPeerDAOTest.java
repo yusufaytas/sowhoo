@@ -84,7 +84,7 @@ public class RegisteredPeerDAOTest {
 	@Test
 	public void findTest(){
 		String email = "email";
-		String query = "SELECT * FROM sowhoopeer WHERE pemail ='"+email+"'";
+		String query = "SELECT * FROM RegisteredPeer WHERE rpEmail ='"+email+"'";
 		doReturn(sqlQuery).when(registeredPeerDAO).createQuery(query, RegisteredPeer.class);
 		when(sqlQuery.list()).thenReturn(list);
 		doReturn(peer).when(list).get(0);
@@ -95,7 +95,7 @@ public class RegisteredPeerDAOTest {
 	@Test
 	public void findThrowsExceptionTest(){
 		String email = "email";
-		String query = "SELECT * FROM sowhoopeer WHERE pemail ='"+email+"'";
+		String query = "SELECT * FROM RegisteredPeer WHERE rpEmail ='"+email+"'";
 		doReturn(sqlQuery).when(registeredPeerDAO).createQuery(query, RegisteredPeer.class);
 		when(sqlQuery.list()).thenReturn(list);
 		doThrow(new IndexOutOfBoundsException()).when(list).get(0);
