@@ -1,9 +1,7 @@
 package com.sowhoo.speer.service.impl;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +56,7 @@ public class RegisteredPeerServiceTest {
 		registeredPeerService.update(peer);
 	}
 	
-	public void save() throws PeerAlreadyExistException{
+	public void saveTest() throws PeerAlreadyExistException{
 		String email = "email";
 		when(registeredPeerDAO.find(email)).thenReturn(null);
 		doNothing().when(registeredPeerDAO).save(peer);
@@ -71,6 +69,14 @@ public class RegisteredPeerServiceTest {
 		String email = "email";
 		when(registeredPeerDAO.find(email)).thenReturn(peer);
 		registeredPeerService.save(peer);
-		verify(registeredPeerDAO).save(peer);
+	}
+	
+	@Test
+	public void findTest(){
+		String email = "email";
+		peer.setIp("192.123.23.1");
+		when(registeredPeerDAO.find(email)).thenReturn(peer);
+		String actualIp = registeredPeerService.find(email);
+		assertEquals(peer.getIp(),actualIp);
 	}
 }
