@@ -20,15 +20,22 @@ import com.sowhoo.speer.model.RegisteredPeer;
 public class RegisteredPeerBuilder {
 	
 	private String email;
+	private String password;
 	
 	public RegisteredPeer build(){
 		RegisteredPeer registeredPeer = new RegisteredPeer();
 		registeredPeer.setEmail(email);
+		registeredPeer.setPassword(password);
 		return registeredPeer;
 	}
 	
 	public RegisteredPeerBuilder email(String email){
 		this.email = email;
+		return this;
+	}
+	
+	public RegisteredPeerBuilder password(String password){
+		this.password = password;
 		return this;
 	}
 }
