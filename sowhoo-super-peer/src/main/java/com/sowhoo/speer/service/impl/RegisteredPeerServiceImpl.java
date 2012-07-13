@@ -36,10 +36,10 @@ public class RegisteredPeerServiceImpl implements RegisteredPeerService {
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public void update(RegisteredPeer registeredPeer) throws UnAuthorizedRegisteredPeerException,NoRegisteredPeerException {
-		RegisteredPeer hPeer = registeredPeerDAO.find(registeredPeer.getEmail());
-		if(hPeer==null)
+		RegisteredPeer foundPeer = registeredPeerDAO.find(registeredPeer.getEmail());
+		if(foundPeer==null)
 			throw new NoRegisteredPeerException();
-		else if(hPeer.equals(registeredPeer))
+		else if(foundPeer.equals(registeredPeer))
 			registeredPeerDAO.save(registeredPeer);
 		else
 			throw new UnAuthorizedRegisteredPeerException();
