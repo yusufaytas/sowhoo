@@ -59,4 +59,12 @@ public class RegisteredPeerServiceImpl implements RegisteredPeerService {
 		return registeredPeerDAO.find(email).getIp();
 	}
 
+	public RegisteredPeerDAO getRegisteredPeerDAO() {
+		return registeredPeerDAO;
+	}
+
+	public void setRegisteredPeerDAO(RegisteredPeerDAO registeredPeerDAO) {
+		this.registeredPeerDAO = registeredPeerDAO;
+	}
+
 }
