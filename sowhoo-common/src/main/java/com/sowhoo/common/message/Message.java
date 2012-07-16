@@ -2,18 +2,18 @@ package com.sowhoo.common.message;
 
 import java.io.Serializable;
 
-public class Message implements Serializable{
+public abstract class Message<Header,Content> implements Serializable{
 
-	private static final long serialVersionUID = -9019240831712679208L;
+	private static final long serialVersionUID = -115010973827269573L;
+
+	protected Header header;
+	protected Content content;
 	
-	private String message;
-
-	public String getMessage() {
-		return message;
+	public Header getHeader() {
+		return header;
 	}
-
-	public void setMessage(String message) {
-		this.message = message;
+	public Content getContent() {
+		return content;
 	}
 	
 }
