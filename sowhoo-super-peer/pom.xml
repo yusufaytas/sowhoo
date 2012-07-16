@@ -9,6 +9,12 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<dependencies>
+	
+		<dependency>
+			<groupId>com.sowhoo</groupId>
+			<artifactId>sowhoo-common</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>

@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 
 public class Serializer {
 	
-	public byte[] serialize(Object object){
+	public static byte[] serialize(Object object){
 		byte[] objectBytes = null;
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
 		try {

@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 public class Deserializer {
 	
 	@SuppressWarnings("unchecked")
-	public <C> C deseralize(byte [] bytes){
+	public static <C> C deseralize(byte [] bytes){
 		Object object = null;
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 		try {
