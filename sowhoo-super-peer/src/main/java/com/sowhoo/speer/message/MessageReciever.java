@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.sowhoo.common.message.StringMessage;
+import com.sowhoo.common.message.TextMessage;
 import com.sowhoo.common.serialization.Deserializer;
 
 @Scope
@@ -50,7 +50,7 @@ public class MessageReciever {
 					DataInputStream dis = new DataInputStream(peerSocket.getInputStream());
 					data = new byte[0];
 					dis.read(data);
-					StringMessage message = Deserializer.deseralize(data);
+					TextMessage message = Deserializer.deseralize(data);
 					messageProcessor.processMessage(message);
 				}
 			}
