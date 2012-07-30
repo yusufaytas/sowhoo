@@ -40,12 +40,12 @@ public class RegisteredPeer {
 	private String password;
 	
 	@Column(name = "rpPort")
-	private String port;
+	private int port;
 	
-	public String getPort() {
+	public int getPort() {
 		return port;
 	}
-	public void setPort(String port) {
+	public void setPort(int port) {
 		this.port = port;
 	}
 	public String getEmail() {

@@ -11,30 +11,35 @@
  * from Yusuf Aytas.
  * Author : Yusuf Aytas
  * Date : Jul 30, 2012
- * File : Message.java
+ * File : NeighborResponseMessage.java
  */
 package com.sowhoo.common.message;
 
-import java.io.Serializable;
-
-public abstract class Message<Header,Content> implements Serializable{
-
-	private static final long serialVersionUID = -115010973827269573L;
-
-	protected Header header;
-	protected Content content;
+public class NeighborResponseMessage extends Message<MessageHeader, MessageContent<String>>{
 	
-	public Header getHeader() {
-		return header;
-	}
-	public void setHeader(Header header) {
-		this.header = header;
-	}
-	public Content getContent() {
-		return content;
-	}
-	public void setContent(Content content) {
-		this.content = content;
-	}
+	private static final long serialVersionUID = -9142558195167227031L;
 	
+	private String ip;
+	private int port;
+	
+	public NeighborResponseMessage(){
+		this.header.setMessageType(MessageType.NEIGHBORRESPONSE);
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
 }

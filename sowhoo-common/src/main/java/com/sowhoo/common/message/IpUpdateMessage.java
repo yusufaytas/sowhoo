@@ -22,6 +22,10 @@ public class IpUpdateMessage extends Message<MessageHeader,MessageContent<String
 	private String email;
 	private String password;
 	
+	public IpUpdateMessage(){
+		this.header.setMessageType(MessageType.IPUPDATEMESSAGE);
+	}
+	
 	public String getEmail() {
 		return email;
 	}

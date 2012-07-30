@@ -15,17 +15,30 @@
  */
 package com.sowhoo.speer.message;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+
 import org.springframework.stereotype.Component;
 
 import com.sowhoo.common.message.Message;
+import com.sowhoo.common.message.MessageHeader;
 import com.sowhoo.common.serialization.Serializer;
 
 @Component
 public class MessageSender {
 
-	@SuppressWarnings("rawtypes")
-	public void sendMessage(Message message) {
+	public void sendMessage(Message<MessageHeader,?> message) {
 		byte [] messageBytes = Serializer.serialize(message);
+		try {
+			Socket socket = new Socket(message.getHeader().getTargetIp(),message.getHeader().getTargetPort());
+			DataOutputStream dos;
+			dos = new DataOutputStream(socket.getOutputStream());
+			dos.write(messageBytes);
+			dos.close();
+			dos = null;
+			socket = null;
+		} catch (IOException e) {}
 	}
 
 }

@@ -20,5 +20,5 @@ import com.sowhoo.speer.model.RegisteredPeer;
 public interface RegisteredPeerService {
 	public int update(RegisteredPeer peer);
 	public int save(RegisteredPeer peer);
-	public String find(String email);
+	public RegisteredPeer find(String email);
 }

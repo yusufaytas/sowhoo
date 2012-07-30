@@ -81,7 +81,7 @@ public class RegisteredPeerServiceTest {
 		String email = "email";
 		peer.setIp("192.123.23.1");
 		when(registeredPeerDAO.find(email)).thenReturn(peer);
-		String actualIp = registeredPeerService.find(email);
+		String actualIp = registeredPeerService.find(email).getIp();
 		assertEquals(peer.getIp(),actualIp);
 	}
 }

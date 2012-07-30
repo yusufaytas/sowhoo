@@ -56,8 +56,8 @@ public class RegisteredPeerServiceImpl implements RegisteredPeerService {
 	}
 	
 	@Transactional
-	public String find(String email){
-		return registeredPeerDAO.find(email).getIp();
+	public RegisteredPeer find(String email){
+		return registeredPeerDAO.find(email);
 	}
 
 	public RegisteredPeerDAO getRegisteredPeerDAO() {

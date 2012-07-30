@@ -19,6 +19,9 @@ public class ErrorMessage extends Message<MessageHeader,MessageContent<Integer>>
 
 	private static final long serialVersionUID = 7574079837193685305L;
 	
+	public ErrorMessage(){
+		this.header.setMessageType(MessageType.ERRORMESSAGE);
+	}
 	public void setErrorCode(Integer errorCode){
 		this.content.setContent(errorCode);
 	}
