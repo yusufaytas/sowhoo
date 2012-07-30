@@ -11,21 +11,28 @@
  * from Yusuf Aytas.
  * Author : Yusuf Aytas
  * Date : Jul 30, 2012
- * File : MessageSender.java
+ * File : IpUpdateMessage.java
  */
-package com.sowhoo.speer.message;
+package com.sowhoo.common.message;
 
-import org.springframework.stereotype.Component;
+public class IpUpdateMessage extends Message<MessageHeader,MessageContent<String> >{
 
-import com.sowhoo.common.message.Message;
-import com.sowhoo.common.serialization.Serializer;
-
-@Component
-public class MessageSender {
-
-	@SuppressWarnings("rawtypes")
-	public void sendMessage(Message message) {
-		byte [] messageBytes = Serializer.serialize(message);
+	private static final long serialVersionUID = 7658998760041454172L;
+	
+	private String email;
+	private String password;
+	
+	public String getEmail() {
+		return email;
 	}
-
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }

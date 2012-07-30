@@ -1,7 +1,10 @@
 package com.sowhoo.speer.service.impl;
 
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,9 +14,6 @@ import org.mockito.Spy;
 
 import com.sowhoo.speer.builder.RegisteredPeerBuilder;
 import com.sowhoo.speer.dao.RegisteredPeerDAO;
-import com.sowhoo.speer.exception.NoRegisteredPeerException;
-import com.sowhoo.speer.exception.PeerAlreadyExistException;
-import com.sowhoo.speer.exception.UnAuthorizedPeerException;
 import com.sowhoo.speer.model.RegisteredPeer;
 
 public class RegisteredPeerServiceTest {
@@ -33,42 +33,47 @@ public class RegisteredPeerServiceTest {
 		registeredPeerService.setRegisteredPeerDAO(registeredPeerDAO);
 	}
 	
-	public void updateTest() throws UnAuthorizedPeerException, NoRegisteredPeerException{
+	public void updateTest(){
 		String email = "email";
 		when(registeredPeerDAO.find(email)).thenReturn(peer);
 		doNothing().when(registeredPeerDAO).save(peer);
-		registeredPeerService.update(peer);
+		int returnValue = registeredPeerService.update(peer);
+		assertEquals(returnValue, 1);
 		verify(registeredPeerDAO).save(peer);
 	}
 	
-	@Test(expected=NoRegisteredPeerException.class)
-	public void updateTestThrowsNoRegisteredPeerException() throws UnAuthorizedPeerException, NoRegisteredPeerException{
+	@Test
+	public void updateTestThrowsNoRegisteredPeerException(){
 		String email = "email";
 		when(registeredPeerDAO.find(email)).thenReturn(null);
-		registeredPeerService.update(peer);
+		int returnValue = registeredPeerService.update(peer);
+		assertEquals(returnValue, -1);
 	}
 	
-	@Test(expected=UnAuthorizedPeerException.class)
-	public void updateTestThrowsUnAuthorizedRegisteredPeerException() throws UnAuthorizedPeerException, NoRegisteredPeerException{
+	@Test
+	public void updateTestThrowsUnAuthorizedRegisteredPeerException(){
 		String email = "email";
 		when(registeredPeerDAO.find(email)).thenReturn(peer);
 		doReturn(false).when(peer).equals(peer);
-		registeredPeerService.update(peer);
+		int returnValue = registeredPeerService.update(peer);
+		assertEquals(returnValue, -1);
 	}
 	
-	public void saveTest() throws PeerAlreadyExistException{
+	public void saveTest(){
 		String email = "email";
 		when(registeredPeerDAO.find(email)).thenReturn(null);
 		doNothing().when(registeredPeerDAO).save(peer);
-		registeredPeerService.save(peer);
+		int returnValue = registeredPeerService.update(peer);
+		assertEquals(returnValue, 1);
 		verify(registeredPeerDAO).save(peer);
 	}
 	
-	@Test(expected=PeerAlreadyExistException.class)
-	public void saveThrowsPeerAlreadyExistException() throws PeerAlreadyExistException{
+	@Test
+	public void saveThrowsPeerAlreadyExistException(){
 		String email = "email";
 		when(registeredPeerDAO.find(email)).thenReturn(peer);
-		registeredPeerService.save(peer);
+		int returnValue = registeredPeerService.update(peer);
+		assertEquals(returnValue, -1);
 	}
 	
 	@Test

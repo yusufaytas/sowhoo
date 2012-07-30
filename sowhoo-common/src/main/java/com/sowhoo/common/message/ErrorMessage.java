@@ -11,21 +11,16 @@
  * from Yusuf Aytas.
  * Author : Yusuf Aytas
  * Date : Jul 30, 2012
- * File : MessageSender.java
+ * File : ErrorMessage.java
  */
-package com.sowhoo.speer.message;
+package com.sowhoo.common.message;
 
-import org.springframework.stereotype.Component;
+public class ErrorMessage extends Message<MessageHeader,MessageContent<Integer>>{
 
-import com.sowhoo.common.message.Message;
-import com.sowhoo.common.serialization.Serializer;
-
-@Component
-public class MessageSender {
-
-	@SuppressWarnings("rawtypes")
-	public void sendMessage(Message message) {
-		byte [] messageBytes = Serializer.serialize(message);
+	private static final long serialVersionUID = 7574079837193685305L;
+	
+	public void setErrorCode(Integer errorCode){
+		this.content.setContent(errorCode);
 	}
-
+	
 }

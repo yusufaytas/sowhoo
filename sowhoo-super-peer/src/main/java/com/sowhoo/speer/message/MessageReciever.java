@@ -1,3 +1,18 @@
+/*************************************************************************
+ * Yusuf Aytas  © All Rights Reserved.
+ * 
+ * NOTICE:  All information contained herein is, and remains the property 
+ * of Yusuf Aytas and its suppliers,if any.  The intellectual and 
+ * technical concepts contained herein are proprietary to Yusuf Aytas
+ * and its suppliers and may be covered by U.S. and Foreign Patents,patents
+ * in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material is 
+ * strictly forbidden unless prior written permission is obtained
+ * from Yusuf Aytas.
+ * Author : Yusuf Aytas
+ * Date : Jul 30, 2012
+ * File : MessageReciever.java
+ */
 package com.sowhoo.speer.message;
 
 import java.io.DataInputStream;
@@ -9,7 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.sowhoo.common.message.TextMessage;
+import com.sowhoo.common.message.Message;
+import com.sowhoo.common.message.MessageHeader;
 import com.sowhoo.common.serialization.Deserializer;
 
 @Scope
@@ -50,7 +66,7 @@ public class MessageReciever {
 					DataInputStream dis = new DataInputStream(peerSocket.getInputStream());
 					data = new byte[0];
 					dis.read(data);
-					TextMessage message = Deserializer.deseralize(data);
+					Message<MessageHeader,?> message = Deserializer.deseralize(data);;
 					messageProcessor.processMessage(message);
 				}
 			}

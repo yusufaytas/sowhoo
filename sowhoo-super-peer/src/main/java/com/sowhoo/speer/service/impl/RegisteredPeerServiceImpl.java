@@ -21,9 +21,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sowhoo.speer.dao.RegisteredPeerDAO;
-import com.sowhoo.speer.exception.NoRegisteredPeerException;
-import com.sowhoo.speer.exception.UnAuthorizedPeerException;
-import com.sowhoo.speer.exception.PeerAlreadyExistException;
 import com.sowhoo.speer.model.RegisteredPeer;
 import com.sowhoo.speer.service.RegisteredPeerService;
 
@@ -35,23 +32,27 @@ public class RegisteredPeerServiceImpl implements RegisteredPeerService {
 	RegisteredPeerDAO registeredPeerDAO;
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
-	public void update(RegisteredPeer registeredPeer) throws UnAuthorizedPeerException,NoRegisteredPeerException {
+	public int update(RegisteredPeer registeredPeer){
 		RegisteredPeer foundPeer = registeredPeerDAO.find(registeredPeer.getEmail());
 		if(foundPeer==null)
-			throw new NoRegisteredPeerException();
-		else if(foundPeer.equals(registeredPeer))
+			return -1;
+		else if(foundPeer.equals(registeredPeer)){
 			registeredPeerDAO.save(registeredPeer);
+			return 1;
+		}
 		else
-			throw new UnAuthorizedPeerException();
+			return -1;
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
-	public void save(RegisteredPeer user) throws PeerAlreadyExistException {
+	public int save(RegisteredPeer user){
 		RegisteredPeer registeredPeer = registeredPeerDAO.find(user.getEmail());
-		if(registeredPeer==null)
+		if(registeredPeer==null){
 			registeredPeerDAO.save(user);
+			return 1;
+		}
 		else
-			throw new PeerAlreadyExistException();
+			return -1;
 	}
 	
 	@Transactional
