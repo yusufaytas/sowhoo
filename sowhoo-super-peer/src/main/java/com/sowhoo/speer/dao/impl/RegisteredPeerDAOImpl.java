@@ -24,31 +24,31 @@ import com.sowhoo.speer.dao.RegisteredPeerDAO;
 import com.sowhoo.speer.model.RegisteredPeer;
 
 @Repository
-public class RegisteredPeerDAOImpl implements RegisteredPeerDAO{
+public class RegisteredPeerDAOImpl implements RegisteredPeerDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public void save(RegisteredPeer registeredPeer) {
 		sessionFactory.getCurrentSession().saveOrUpdate(registeredPeer);
 	}
-	
+
 	public void delete(RegisteredPeer registeredPeer) {
 		sessionFactory.getCurrentSession().delete(registeredPeer);
 	}
 
 	public RegisteredPeer find(String email) {
 		RegisteredPeer registeredPeer = null;
-		String query = "SELECT * FROM RegisteredPeer WHERE rpEmail ='"+email+"'";
-		try{
-			SQLQuery sqlQuery = createQuery(query,RegisteredPeer.class);
-			registeredPeer = (RegisteredPeer)sqlQuery.list().get(0);
-		}catch(Exception ex){};
+		String query = "SELECT * FROM RegisteredPeer WHERE rpEmail ='" + email + "'";
+		try {
+			SQLQuery sqlQuery = createQuery(query, RegisteredPeer.class);
+			registeredPeer = (RegisteredPeer) sqlQuery.list().get(0);
+		} catch (Exception ex) {}
 		return registeredPeer;
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected SQLQuery createQuery(String query,Class c) {
+	protected SQLQuery createQuery(String query, Class c) {
 		return sessionFactory.getCurrentSession().createSQLQuery(query).addEntity(c);
 	}
 

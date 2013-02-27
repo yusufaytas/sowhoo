@@ -23,7 +23,7 @@ public class IpUpdateMessage extends Message<MessageHeader,MessageContent<String
 	private String password;
 	
 	public IpUpdateMessage(){
-		this.header.setMessageType(MessageType.IPUPDATEMESSAGE);
+		this.header.setMessageType(MessageType.IP_UPDATE);
 	}
 	
 	public String getEmail() {

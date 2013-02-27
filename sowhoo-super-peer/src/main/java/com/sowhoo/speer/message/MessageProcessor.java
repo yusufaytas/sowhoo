@@ -22,8 +22,8 @@ import com.sowhoo.common.message.ErrorMessage;
 import com.sowhoo.common.message.IpUpdateMessage;
 import com.sowhoo.common.message.Message;
 import com.sowhoo.common.message.MessageHeader;
-import com.sowhoo.common.message.NeighborRequestMessage;
-import com.sowhoo.common.message.NeighborResponseMessage;
+import com.sowhoo.common.message.NeighborDetailRequestMessage;
+import com.sowhoo.common.message.NeighborDetailResponseMessage;
 import com.sowhoo.speer.model.RegisteredPeer;
 import com.sowhoo.speer.service.RegisteredPeerService;
 
@@ -41,7 +41,7 @@ public class MessageProcessor {
 
 	public void processMessage(Message<MessageHeader, ?> message) {
 		switch (message.getHeader().getMessageType()) {
-		case IPUPDATEMESSAGE: {
+		case IP_UPDATE: {
 			IpUpdateMessage ipUpdateMessage = (IpUpdateMessage) message;
 			RegisteredPeer registeredPeer = new RegisteredPeer();
 			registeredPeer.setIp(ipUpdateMessage.getHeader().getSourceIp());
@@ -50,20 +50,20 @@ public class MessageProcessor {
 			registeredPeer.setPassword(ipUpdateMessage.getPassword());
 			int returnValue = service.update(registeredPeer);
 			if (returnValue != 1) {
-				ErrorMessage newMessage = messageComposer.composeErrorMessage(
-						message.getHeader(), returnValue);
+				ErrorMessage newMessage = messageComposer.composeErrorMessage(message.getHeader(), returnValue);
 				messageSender.sendMessage(newMessage);
 			}
-		}break;
-		case NEIGHBORREQUEST: {
-			NeighborRequestMessage neighborRequestMessage = (NeighborRequestMessage) message;
+		}
+			break;
+		case NEIGHBOR_CONNECTION_DETAIL_REQUEST: {
+			NeighborDetailRequestMessage neighborRequestMessage = (NeighborDetailRequestMessage) message;
 			RegisteredPeer registeredPeer = service.find(neighborRequestMessage.getEmail());
 			if (registeredPeer != null) {
-				NeighborResponseMessage neighborResponseMessage = messageComposer.composeNeighborResponseMessage(
-								neighborRequestMessage.getHeader(),registeredPeer);
+				NeighborDetailResponseMessage neighborResponseMessage = messageComposer.composeNeighborResponseMessage(neighborRequestMessage.getHeader(), registeredPeer);
 				messageSender.sendMessage(neighborResponseMessage);
 			}
-		}break;
+		}
+			break;
 		}
 	}
 }

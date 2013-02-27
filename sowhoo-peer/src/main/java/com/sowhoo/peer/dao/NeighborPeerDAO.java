@@ -15,7 +15,6 @@
  */
 package com.sowhoo.peer.dao;
 
-
 public interface NeighborPeerDAO {
 
 }

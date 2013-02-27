@@ -19,21 +19,21 @@ import org.springframework.stereotype.Component;
 
 import com.sowhoo.common.message.ErrorMessage;
 import com.sowhoo.common.message.MessageHeader;
-import com.sowhoo.common.message.NeighborResponseMessage;
+import com.sowhoo.common.message.NeighborDetailResponseMessage;
 import com.sowhoo.speer.model.RegisteredPeer;
 
 @Component
 public class MessageComposer {
-	
-	public ErrorMessage composeErrorMessage(MessageHeader messageHeader,Integer errorCode){
+
+	public ErrorMessage composeErrorMessage(MessageHeader messageHeader, Integer errorCode) {
 		ErrorMessage errorMessage = new ErrorMessage();
 		errorMessage.setErrorCode(errorCode);
 		MessageHeader newMessageHeader = changeDirection(messageHeader);
 		errorMessage.setHeader(newMessageHeader);
 		return errorMessage;
 	}
-	
-	public MessageHeader changeDirection(MessageHeader messageHeader){
+
+	public MessageHeader changeDirection(MessageHeader messageHeader) {
 		MessageHeader newMessageHeader = new MessageHeader();
 		newMessageHeader.setSourceId(messageHeader.getTargetIp());
 		newMessageHeader.setSourcePort(messageHeader.getTargetPort());
@@ -44,8 +44,8 @@ public class MessageComposer {
 		return newMessageHeader;
 	}
 
-	public NeighborResponseMessage composeNeighborResponseMessage(MessageHeader messageHeader,RegisteredPeer registeredPeer) {
-		NeighborResponseMessage neighborResponseMessage = new NeighborResponseMessage();
+	public NeighborDetailResponseMessage composeNeighborResponseMessage(MessageHeader messageHeader, RegisteredPeer registeredPeer) {
+		NeighborDetailResponseMessage neighborResponseMessage = new NeighborDetailResponseMessage();
 		neighborResponseMessage.setIp(registeredPeer.getIp());
 		neighborResponseMessage.setPort(registeredPeer.getPort());
 		MessageHeader newMessageHeader = changeDirection(messageHeader);

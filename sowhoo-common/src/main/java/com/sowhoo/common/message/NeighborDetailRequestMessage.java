@@ -11,35 +11,25 @@
  * from Yusuf Aytas.
  * Author : Yusuf Aytas
  * Date : Jul 30, 2012
- * File : NeighborResponseMessage.java
+ * File : NeighborDetailRequestMessage.java
  */
 package com.sowhoo.common.message;
 
-public class NeighborResponseMessage extends Message<MessageHeader, MessageContent<String>>{
+public class NeighborDetailRequestMessage extends Message<MessageHeader, MessageContent<String>>{
 	
-	private static final long serialVersionUID = -9142558195167227031L;
+	private static final long serialVersionUID = -623103502265096992L;
 	
-	private String ip;
-	private int port;
+	private String email;
 	
-	public NeighborResponseMessage(){
-		this.header.setMessageType(MessageType.NEIGHBORRESPONSE);
+	public NeighborDetailRequestMessage(){
+		this.header.setMessageType(MessageType.NEIGHBOR_CONNECTION_DETAIL_REQUEST);
 	}
 
-	public String getIp() {
-		return ip;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-	public int getPort() {
-		return port;
-	}
-
-	public void setPort(int port) {
-		this.port = port;
-	}
-
 }
