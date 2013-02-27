@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -32,6 +34,8 @@ import com.sowhoo.common.serialization.Deserializer;
 @Component
 public class MessageReciever {
 
+	private static final Logger logger = LoggerFactory.getLogger(MessageReciever.class);
+	
 	@Autowired
 	protected MessageProcessor messageProcessor;
 	
@@ -71,7 +75,7 @@ public class MessageReciever {
 				}
 			}
 			catch(Exception e) {
-				
+				logger.error("Exception occured while receiving message, ",e);
 			}
 		}
 	}

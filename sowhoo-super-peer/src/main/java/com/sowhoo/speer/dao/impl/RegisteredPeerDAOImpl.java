@@ -17,6 +17,8 @@ package com.sowhoo.speer.dao.impl;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +28,8 @@ import com.sowhoo.speer.model.RegisteredPeer;
 @Repository
 public class RegisteredPeerDAOImpl implements RegisteredPeerDAO {
 
+	private static final Logger logger = LoggerFactory.getLogger(RegisteredPeerDAOImpl.class);
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -40,10 +44,8 @@ public class RegisteredPeerDAOImpl implements RegisteredPeerDAO {
 	public RegisteredPeer find(String email) {
 		RegisteredPeer registeredPeer = null;
 		String query = "SELECT * FROM RegisteredPeer WHERE rpEmail ='" + email + "'";
-		try {
-			SQLQuery sqlQuery = createQuery(query, RegisteredPeer.class);
-			registeredPeer = (RegisteredPeer) sqlQuery.list().get(0);
-		} catch (Exception ex) {}
+		SQLQuery sqlQuery = createQuery(query, RegisteredPeer.class);
+		registeredPeer = (RegisteredPeer) sqlQuery.list().get(0);
 		return registeredPeer;
 	}
 

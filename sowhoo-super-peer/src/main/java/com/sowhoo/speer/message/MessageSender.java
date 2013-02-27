@@ -19,6 +19,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.sowhoo.common.message.Message;
@@ -28,6 +30,8 @@ import com.sowhoo.common.serialization.Serializer;
 @Component
 public class MessageSender {
 
+	private static final Logger logger = LoggerFactory.getLogger(MessageSender.class);
+	
 	public void sendMessage(Message<MessageHeader,?> message) {
 		byte [] messageBytes = Serializer.serialize(message);
 		try {
@@ -36,9 +40,9 @@ public class MessageSender {
 			dos = new DataOutputStream(socket.getOutputStream());
 			dos.write(messageBytes);
 			dos.close();
-			dos = null;
-			socket = null;
-		} catch (IOException e) {}
+		} catch (IOException e) {
+			logger.error("Exception occured while sending message, ",e);
+		}
 	}
 
 }

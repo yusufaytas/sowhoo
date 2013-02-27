@@ -15,6 +15,8 @@
  */
 package com.sowhoo.speer.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -27,21 +29,25 @@ import com.sowhoo.speer.service.RegisteredPeerService;
 @Service
 @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
 public class RegisteredPeerServiceImpl implements RegisteredPeerService {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(RegisteredPeerServiceImpl.class);
+	
 	@Autowired
 	RegisteredPeerDAO registeredPeerDAO;
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public int update(RegisteredPeer registeredPeer){
 		RegisteredPeer foundPeer = registeredPeerDAO.find(registeredPeer.getEmail());
-		if(foundPeer==null)
+		if(foundPeer==null){
 			return -1;
+		}
 		else if(foundPeer.equals(registeredPeer)){
 			registeredPeerDAO.save(registeredPeer);
 			return 1;
 		}
-		else
+		else{
 			return -1;
+		}
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
@@ -51,8 +57,9 @@ public class RegisteredPeerServiceImpl implements RegisteredPeerService {
 			registeredPeerDAO.save(user);
 			return 1;
 		}
-		else
+		else{
 			return -1;
+		}
 	}
 	
 	@Transactional
